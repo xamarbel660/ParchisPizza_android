@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ParchisPizza</string>
+    <string name="despImagen">Logo Parchis Pizza</string>
+    <string name="bienvenida">¡Bienvenido a Parchis Pizza!</string>
+    <string name="introducirInformacion">Introduzca su nombre y la cantidad de pizza a pedir</string>
+    <string name="labelNombre">Nombre</string>
+    <string name="labelPizzas">Numero de pizzas</string>
+</resources>

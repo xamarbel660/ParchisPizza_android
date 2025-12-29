@@ -1,0 +1,7 @@
+package com.example.parchispizza
+
+enum class ParchisScreen {
+    SCREEN_1,
+    SCREEN_2,
+    SCREEN_3
+}
