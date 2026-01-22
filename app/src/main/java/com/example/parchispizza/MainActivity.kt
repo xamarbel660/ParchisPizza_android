@@ -13,6 +13,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -91,65 +92,68 @@ fun App() {
         topBar = {
             TopAppBar()
         }
-    ) {
-        // Estado de la pantalla
-        var currentScreen by remember { mutableStateOf(ParchisScreen.SCREEN_1) }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)){
+            // Estado de la pantalla
+            var currentScreen by remember { mutableStateOf(ParchisScreen.SCREEN_1) }
 
-        var nombreUsuarioInput by remember { mutableStateOf("") }
-        var numeroDePizzasInput by remember { mutableStateOf("") }
+            var nombreUsuarioInput by remember { mutableStateOf("") }
+            var numeroDePizzasInput by remember { mutableStateOf("") }
 
 
-        var pizzaInput by remember { mutableStateOf("") }
-        var hasCheeseBorder by remember { mutableStateOf(false) }
+            var pizzaInput by remember { mutableStateOf("") }
+            var hasCheeseBorder by remember { mutableStateOf(false) }
 
-        val pizzas = pizzas
+            val pizzas = pizzas
 
-        when (currentScreen) {
-            ParchisScreen.SCREEN_1 -> Screen1(
-                nombre = nombreUsuarioInput,
-                numPizzas = numeroDePizzasInput,
-                onValueChangeNombreUsuario = { nombreUsuarioInput = it },
-                onValueChangeNumeroPizza = { numeroDePizzasInput = it },
-                onNext = { currentScreen = ParchisScreen.SCREEN_2 },
-                onCatalogo = { currentScreen = ParchisScreen.SCREEN_4 },
-            )
-
-            ParchisScreen.SCREEN_2 -> {
-                Screen2(
-                    tipoPizza = pizzaInput,
+            when (currentScreen) {
+                ParchisScreen.SCREEN_1 -> Screen1(
+                    nombre = nombreUsuarioInput,
                     numPizzas = numeroDePizzasInput,
-                    onPizzaChange = { pizzaInput = it },
-                    tieneBorde = hasCheeseBorder,
-                    onBordeChange = { hasCheeseBorder = it },
-
-                    onNext = { currentScreen = ParchisScreen.SCREEN_3 },
-                    onBack = { currentScreen = ParchisScreen.SCREEN_1 },
+                    onValueChangeNombreUsuario = { nombreUsuarioInput = it },
+                    onValueChangeNumeroPizza = { numeroDePizzasInput = it },
+                    onNext = { currentScreen = ParchisScreen.SCREEN_2 },
+                    onCatalogo = { currentScreen = ParchisScreen.SCREEN_4 },
                 )
-            }
 
-            ParchisScreen.SCREEN_3 -> Screen3(
-                nombre = nombreUsuarioInput,
-                numPizzas = numeroDePizzasInput,
-                tipoPizza = pizzaInput,
-                conBorde = hasCheeseBorder,
-                onRestart = {
-                    nombreUsuarioInput = ""
-                    numeroDePizzasInput = ""
-                    pizzaInput = ""
-                    hasCheeseBorder = false
-                    currentScreen = ParchisScreen.SCREEN_1
-                },
-            )
+                ParchisScreen.SCREEN_2 -> {
+                    Screen2(
+                        tipoPizza = pizzaInput,
+                        numPizzas = numeroDePizzasInput,
+                        onPizzaChange = { pizzaInput = it },
+                        tieneBorde = hasCheeseBorder,
+                        onBordeChange = { hasCheeseBorder = it },
 
-            ParchisScreen.SCREEN_4 -> {
-                Screen4(
-                    pizzas = pizzas,
-                    onBack = { currentScreen = ParchisScreen.SCREEN_1 },
+                        onNext = { currentScreen = ParchisScreen.SCREEN_3 },
+                        onBack = { currentScreen = ParchisScreen.SCREEN_1 },
+                    )
+                }
+
+                ParchisScreen.SCREEN_3 -> Screen3(
+                    nombre = nombreUsuarioInput,
+                    numPizzas = numeroDePizzasInput,
+                    tipoPizza = pizzaInput,
+                    conBorde = hasCheeseBorder,
+                    onRestart = {
+                        nombreUsuarioInput = ""
+                        numeroDePizzasInput = ""
+                        pizzaInput = ""
+                        hasCheeseBorder = false
+                        currentScreen = ParchisScreen.SCREEN_1
+                    },
                 )
-            }
 
-            else -> print("Error")
+                ParchisScreen.SCREEN_4 -> {
+                    Screen4(
+                        pizzas = pizzas,
+                        onBack = { currentScreen = ParchisScreen.SCREEN_1 },
+                    )
+                }
+
+                else -> print("Error")
+            }
         }
+
     }
 }
 
@@ -170,7 +174,7 @@ fun Screen1(
             .padding(dimensionResource(R.dimen.padding_medium)), // Margen alrededor de toda la pantalla
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(150.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = stringResource(R.string.bienvenida),
@@ -271,7 +275,7 @@ fun Screen2(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(150.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "Ponga el tipo de pizza para tus $numPizzas pizzas:",
@@ -408,10 +412,11 @@ fun Screen4(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        Spacer(modifier = Modifier.height(110.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Button(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(50.dp),
             onClick = onBack
         ) {
             Text("Ir al Menu")
