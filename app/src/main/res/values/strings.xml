@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">ParchisPizza</string>
+    <string name="screen1Title">Menu Principal</string>
+    <string name="screen2Title">Elige tu Pizza</string>
+    <string name="screen3Title">Ticket</string>
+    <string name="screen4Title">Menu</string>
+    <string name="screen5Title">Carrera de Repartidores</string>
+    <string name="back_button">Atras</string>
+    <string name="pedidoPizza">Pedido Pizza</string>
+    <string name="tituloCarrera">Carrera de Repartidores</string>
+    <string name="tituloIconoMoto">Moto de repartidor</string>
+    <string name="empezarCarrera">Start</string>
+    <string name="pausarCarrera">Pause</string>
+    <string name="resetearCarrera">Reset</string>
+    <string name="progress_percentage">%1$d%%</string>
     <string name="despImagen">Logo Parchis Pizza</string>
     <string name="bienvenida">¡Bienvenido a Parchis Pizza!</string>
     <string name="introducirInformacion">Introduzca su nombre y la cantidad de pizza a pedir</string>
